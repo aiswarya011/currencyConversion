@@ -111,6 +111,7 @@ export class CurrencyCardWrapperComponent {
     }
   }
 
+  
   clearFromValue() {
     this.fromValue = 0;
     this.toValue = 0;
