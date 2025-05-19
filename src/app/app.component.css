@@ -1,0 +1,10 @@
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #1b4332;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}

@@ -1,0 +1,20 @@
+<div class="navbar-container">
+    <nav class="navbar">
+        <div class="logo">Convertly</div>
+
+        <div class="nav-links">
+
+            @if (token) {
+            Welcome, {{name}}
+            <a style="cursor: pointer;" (click)="historyDialog()">History</a>
+            <a style="cursor: pointer;" (click)="logOut()">Logout</a>
+            }@else {
+            <a style="cursor: pointer;" (click)="openLoginDialog()">Login</a>
+
+            <a style="cursor: pointer;" (click)="openRegisterDialog()">Register</a>
+            }
+
+
+        </div>
+    </nav>
+</div>

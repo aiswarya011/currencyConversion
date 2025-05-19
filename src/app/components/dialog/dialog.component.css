@@ -1,0 +1,19 @@
+.login-dialog {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-content {
+  padding: 0;
+}

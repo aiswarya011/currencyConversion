@@ -1,0 +1,28 @@
+.navbar-container {
+    padding: 24px 24px;
+    background-color: #1b4332;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif
+}
+
+.navbar {
+    padding: 5px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 34px;
+}
+
+.nav-links a {
+    margin-left: 24px;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}

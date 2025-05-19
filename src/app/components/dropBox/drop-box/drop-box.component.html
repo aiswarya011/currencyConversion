@@ -1,0 +1,19 @@
+<mat-form-field appearance="fill" style="width: 80px; font-size: 14px">
+  <mat-label>Currency</mat-label>
+  <input
+    type="text"
+    matInput
+    [(ngModel)]="selectedCurrency"
+    [matAutocomplete]="auto"
+  />
+
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="handleCurrencySelection()"
+    [displayWith]="displayFn"
+  >
+    <mat-option *ngFor="let option of currencyCodes" [value]="option">
+      <span style="font-size: 18px; margin-right: 8px">{{ option }}</span>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
