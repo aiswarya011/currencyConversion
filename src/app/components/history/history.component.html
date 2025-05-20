@@ -1,8 +1,24 @@
-<h2 mat-dialog-title>Currency Conversion History</h2>
-<mat-dialog-content>
-  Would you like to delete cat.jpeg?
+<h2 mat-dialog-title style="text-align: center">Currency Conversion History</h2>
+
+@if (!cleared) {
+<mat-dialog-content class="item">
+  @for (item of historyData; track $index) { @if (item.fromValue !==0 &&
+  item.toValue !==0) {
+  <button mat-button>
+    {{ item.fromValue }} {{ item.fromCurrency }} = {{ item.toValue }}
+    {{ item.toCurrency }}
+  </button>
+  } }
 </mat-dialog-content>
+}@else {
+<mat-dialog-content class="item">
+  <button mat-button>
+    No Data.
+  </button>
+</mat-dialog-content>
+}
+
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Clear History</button>
+  <button mat-button (click)="clearHistory()">Clear History</button>
   <button mat-button mat-dialog-close cdkFocusInitial>close</button>
 </mat-dialog-actions>

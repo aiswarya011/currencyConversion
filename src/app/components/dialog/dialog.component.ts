@@ -31,6 +31,7 @@ export class DialogComponent {
   userExist: boolean = false;
   validUser: boolean = false;
   userName: string = '';
+  userId: any;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { type: 'login' | 'register' },
@@ -63,10 +64,12 @@ export class DialogComponent {
       this.service.login(email, password).subscribe(user => {
         if (user) {
           this.userName = user[0].name
+          this.userId = user[0].id
           console.log('Login Success:', user[0].name);
           this.validUser = false;
           sessionStorage.setItem('token', 'logged-in')
           sessionStorage.setItem('user', this.userName)
+          sessionStorage.setItem('userId', this.userId)
           window.location.reload()
           // Proceed with app logic
         } else {

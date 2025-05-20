@@ -7,6 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class ServiceService {
   key = '797372eb36b5f44cde7b98e4'
+
   constructor(private http: HttpClient) { }
 
   getAllCurrency(): Observable<any> {
@@ -29,11 +30,13 @@ export class ServiceService {
     return this.http.get<any[]>(`http://localhost:3000/user?email=${email}&password=${password}`)
   }
 
-  getUserHistory(userId: number): Observable<any[]> {
+  getUserHistory(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`http://localhost:3000/history?userId=${userId}`);
   }
 
   addToHistory(data: any): Observable<any> {
-    return this.http.post('http://localhost:3000/history', data);
+    return this.http.post(`http://localhost:3000/history`, data);
   }
+
+ 
 }

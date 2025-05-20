@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { DropBoxComponent } from "../dropBox/drop-box/drop-box.component";
 import { ServiceService } from '../../service/service.service';
 import { ChangeDetectorRef } from '@angular/core';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
@@ -26,7 +26,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   styleUrl: './currency-card-wrapper.component.css'
 })
 export class CurrencyCardWrapperComponent {
-  fromValue: number = 1;
+  fromValue: number = 0;
   toValue: number = 0;
   currencyCodes: string[] = [];
   fromCurrency: string = '';
@@ -34,6 +34,7 @@ export class CurrencyCardWrapperComponent {
   fromDefault = 'PLN';
   toDefault = 'INR';
   convertion_rate: number = 0
+  historyData = {};
 
   constructor(private service: ServiceService, private cdr: ChangeDetectorRef) { }
 
@@ -94,8 +95,6 @@ export class CurrencyCardWrapperComponent {
         console.log('Conversion rate:', res.conversion_rate);
         this.convertion_rate = Number(res.conversion_rate)
         this.cdr.detectChanges()
-        this.onFromValueChange();
-        this.onToValueChange()
       });
   }
 
@@ -103,15 +102,36 @@ export class CurrencyCardWrapperComponent {
     if (this.convertion_rate && this.fromValue != null) {
       this.toValue = this.fromValue * this.convertion_rate;
     }
+    if (this.fromValue !== 0) {
+      this.getHistoryData()
+    }
+
   }
 
   onToValueChange() {
     if (this.convertion_rate && this.toValue != null) {
       this.fromValue = this.toValue / this.convertion_rate;
     }
+    if (this.toValue !== 0) {
+      this.getHistoryData()
+    }
   }
 
-  
+  getHistoryData() {
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) return;
+
+    const historyEntry = {
+      userId,
+      fromValue: this.fromValue,
+      fromCurrency: this.fromCurrency,
+      toValue: this.toValue,
+      toCurrency: this.toCurrency
+    };
+    console.log(this.historyData);
+    this.service.addToHistory(historyEntry).subscribe()
+  }
+
   clearFromValue() {
     this.fromValue = 0;
     this.toValue = 0;

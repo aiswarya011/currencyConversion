@@ -48,6 +48,7 @@ export class NavBarComponent {
   logOut() {
     sessionStorage.removeItem('token')
     sessionStorage.removeItem('user')
+     sessionStorage.removeItem('userId')
     window.location.reload()
   }
 
